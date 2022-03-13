@@ -6,6 +6,11 @@ use CodeIgniter\Model;
 class BaseModel extends Model 
 {
 
+    protected function checaPropriedade($data)
+    {
+        return $data;
+    }
+
     //VIncula o id do usuario logado no momento no campo usuario_id da tabela
     protected function vinculaIdUsuario($data)
     {
@@ -58,5 +63,12 @@ class BaseModel extends Model
         }
         
         return $this;
+    }
+
+    public function getByChave($chave = null)
+    {
+        if(!is_null($chave)){
+            return $this->find($chave);
+        }
     }
 }

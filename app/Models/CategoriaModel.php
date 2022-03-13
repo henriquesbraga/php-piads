@@ -9,6 +9,7 @@ class CategoriaModel extends BaseModel
     protected $deletedField = 'deleted_at';
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
+    protected $beforeDelete = ['checaPropriedade'];
     protected $useTimestamps = true;
     protected $beforeInsert = ['vinculaIdUsuario', 'geraChave'];
     protected $allowedFields = [
@@ -22,26 +23,15 @@ class CategoriaModel extends BaseModel
             'label' => 'Descrição',
             'rules' => 'required',
             'errors' => ['required' => 'Campo {field} obrigatório'],
-            'tipo' => [
-                'label' => 'Tipo',
-                'rules' => 'required'
-            ]
+        ],
+        'tipo' => [
+            'label' => 'Tipo',
+            'rules' => 'required',
+            'errors' => ['required' => 'Campo {field} obrigatório']
         ]
     ];
 
-    //VIncula o id do usuario logado no momento no campo usuario_id da tabela
-    protected function vinculaIdUsuario($data)
-    {
-        $data['data']['usuarios_id'] = session()->id_usuario;
-        return $data;
-    }
-
-    //returna chave rand e vincula ao campo chave da tabela
-    protected function geraChave($data)
-    {
-        $data['data']['chave'] = md5(uniqid(rand(), true));
-        return $data;
-    }
+    
 
     
 
