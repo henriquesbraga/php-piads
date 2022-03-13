@@ -15,7 +15,6 @@ class Categoria extends BaseController
     //Carrega a view principal de lançamentos
     public function index()
     {
-        session()->id_usuario = 1;
         $search = $this->request->getGet('search');
         //recuperar todos os dados
         
@@ -52,7 +51,6 @@ class Categoria extends BaseController
 
     public function store()
     {
-        session()->id_usuario = 1;
         $post = $this->request->getPost();
         if($this->categoriaModel->save($post)) {
             return redirect()->to('/mensagem/sucesso')->with('mensagem', [

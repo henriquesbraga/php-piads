@@ -14,6 +14,7 @@ class BaseModel extends Model
     //VIncula o id do usuario logado no momento no campo usuario_id da tabela
     protected function vinculaIdUsuario($data)
     {
+        
         $data['data']['usuarios_id'] = session()->id_usuario;
         return $data;
     }
@@ -50,16 +51,16 @@ class BaseModel extends Model
     // Injeta o usuário
     public function addUserId(int $id_usuario = null){
         if(!is_null($id_usuario)) {
-            $this->where('usuarios_id', $id_usuario);
+            $this->where("{$this->table}.usuarios_id", $id_usuario);
         }
         return $this;
     }
 
 
-    public function addSearch($search = null) 
+    public function addSearch($search = null, $campo = null) 
     {
-        if(!is_null($search)) {
-            $this->like('descricao', $search);
+        if(!is_null($search) && !is_null($campo)) {
+            $this->like($campo, $search);
         }
         
         return $this;
