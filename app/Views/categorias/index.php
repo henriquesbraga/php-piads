@@ -43,6 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if(count($categorias) > 0): ?>
                         <?php foreach($categorias as $categoria): ?>
                             <?php $classe = $categoria['tipo'] == 'd' ? 'text-danger' : 'text-success' ?>
                             <?php $tipo_tratado = $categoria['tipo'] == 'd' ? 'Despesa' : 'Receita' ?>
@@ -56,6 +57,11 @@
                                     </td>
                             </tr>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3" class="text-center"> Nenhuma Categoria encontrada!</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
         </div>

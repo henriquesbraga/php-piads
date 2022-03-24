@@ -53,8 +53,9 @@ class OrcamentoModel extends BaseModel
             valor,
             notificar_por_email");
 
-
         $this->join('categorias', 'categorias.id = orcamentos.categorias_id');
         return $this->findAll();
     }
+
+    
 }
